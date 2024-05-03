@@ -12,14 +12,14 @@ class Solution {
             }
             map.put(nums[i], i);
         }
-        throw new IllegalArgumentException("No two sum solution");
+        throw new AssertionError("Error");
     }
 }
 
 class Main {
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int[] nums = new int[] { 2, 7, 11, 15 };
+        int[] nums = new int[] { 2, 1, 11, 1 };
         int target = 9;
         System.out.println(Arrays.toString(solution.twoSum(nums, target)));
 
