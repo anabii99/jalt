@@ -1,43 +1,87 @@
-class Solution {
-    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        if (nums1.length > nums2.length) {
-            return findMedianSortedArrays(nums2, nums1);
-        }
+class ListNode {
+    int val;
+    ListNode next;
 
-        int m = nums1.length, n = nums2.length;
-        int left = 0, right = m;
-
-        while (left <= right) {
-            int partitionA = (left + right) / 2;
-            int partitionB = (m + n + 1) / 2 - partitionA;
-
-            int maxLeftA = (partitionA == 0) ? Integer.MIN_VALUE : nums1[partitionA - 1];
-            int minRightA = (partitionA == m) ? Integer.MAX_VALUE : nums1[partitionA];
-            int maxLeftB = (partitionB == 0) ? Integer.MIN_VALUE : nums2[partitionB - 1];
-            int minRightB = (partitionB == n) ? Integer.MAX_VALUE : nums2[partitionB];
-
-            if (maxLeftA <= minRightB && maxLeftB <= minRightA) {
-                if ((m + n) % 2 == 0) {
-                    return (Math.max(maxLeftA, maxLeftB) + Math.min(minRightA, minRightB)) / 2.0;
-                } else {
-                    return Math.max(maxLeftA, maxLeftB);
-                }
-            } else if (maxLeftA > minRightB) {
-                right = partitionA - 1;
-            } else {
-                left = partitionA + 1;
-            }
-        }
-        return 0.0;
+    ListNode(int val) {
+        this.val = val;
     }
 }
 
 class Main {
     public static void main(String[] args) {
-        int[] nums1 = {1, 3};
-        int[] nums2 = {2};
-        Solution solution = new Solution();
-        double median = solution.findMedianSortedArrays(nums1, nums2);
-        System.out.println("The median of the two sorted arrays is: " + median);
+        int[] l1Array = { 2, 4, 3 };
+        int[] l2Array = { 5, 6, 4 };
+
+        ListNode l1 = arrayToListNode(l1Array);
+        ListNode l2 = arrayToListNode(l2Array);
+        
+        Solution s = new Solution();
+        ListNode result = s.addTwoNumbers(l1, l2);
+
+        printLinkedList(result); // Output: [7, 0, 8]
+    }
+
+    // Utility function to convert int[] to ListNode
+    private static ListNode arrayToListNode(int[] array) {
+        if (array == null || array.length == 0) {
+            return null;
+        }
+
+        ListNode dummyHead = new ListNode(0);
+        ListNode current = dummyHead;
+
+        for (int num : array) {
+            current.next = new ListNode(num);
+            current = current.next;
+        }
+
+        return dummyHead.next;
+    }
+
+    // Utility function to print a ListNode
+    private static void printLinkedList(ListNode head) {
+        ListNode current = head;
+        StringBuilder sb = new StringBuilder("[");
+
+        while (current != null) {
+            sb.append(current.val);
+            if (current.next != null) {
+                sb.append(", ");
+            }
+            current = current.next;
+        }
+
+        sb.append("]");
+        System.out.println("Output: " + sb.toString());
+    }
+
+    // Method to add two numbers represented by linked lists
+
+}
+
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode dummyHead = new ListNode(0);
+        ListNode current = dummyHead;
+        int carry = 0;
+
+        while (l1 != null || l2 != null) {
+            int x = (l1 != null) ? l1.val : 0;
+            int y = (l2 != null) ? l2.val : 0;
+            int sum = x + y + carry;
+            carry = sum / 10;
+            current.next = new ListNode(sum % 10);
+            current = current.next;
+            if (l1 != null)
+                l1 = l1.next;
+            if (l2 != null)
+                l2 = l2.next;
+        }
+
+        if (carry > 0) {
+            current.next = new ListNode(carry);
+        }
+
+        return dummyHead.next;
     }
 }
