@@ -14,7 +14,7 @@ class Main {
 
         ListNode l1 = arrayToListNode(l1Array);
         ListNode l2 = arrayToListNode(l2Array);
-        
+
         Solution s = new Solution();
         ListNode result = s.addTwoNumbers(l1, l2);
 
