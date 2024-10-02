@@ -1,8 +1,14 @@
 {
-    "java.inlayHints.parameterNames.enabled": "none",
-    "java.server.launchMode": "LightWeight",
     "java.jdt.ls.lombokSupport.enabled": false,
+    "java.jdt.ls.protobufSupport.enabled": false,
     "java.jdt.ls.androidSupport.enabled": "off",
+    "redhat.telemetry.enabled": false,
+    "java.import.gradle.enabled": false,
     "java.import.gradle.wrapper.enabled": false,
-    "java.import.gradle.enabled": false
+    "java.import.gradle.annotationProcessing.enabled": false,
+    "java.format.onType.enabled": false,
+    "java.inlayHints.parameterNames.enabled": "none",
+    "java.foldingRange.enabled": false,
+    "java.sharedIndexes.enabled": "off",
+    "java.cleanup.actions": []
 }

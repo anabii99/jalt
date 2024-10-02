@@ -20,7 +20,7 @@ class Main {
     public static void main(String[] args) {
         Solution solution = new Solution();
         int[] nums = new int[] { 2, 1, 11, 1 };
-        int target = 9;
+        int target = 12;
         System.out.println(Arrays.toString(solution.twoSum(nums, target)));
 
     }
